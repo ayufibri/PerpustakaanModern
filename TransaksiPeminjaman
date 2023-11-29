@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransaksiPeminjaman {
-    private List<String> judul;
+private List<String> judul;
     private List<String> nama;
     private List<LocalDateTime> tanggalPinjam;
     private List<LocalDateTime> tanggalKembali;
