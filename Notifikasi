@@ -1,7 +1,7 @@
 package si_perpustakaan.modern.dan.efisien;
 
 public class Notifikasi {
-     private String batas_waktu; 
+    private String batas_waktu; 
     private String info_terbaru; 
 
     public void kirimNotifikasi() {
@@ -23,5 +23,5 @@ public class Notifikasi {
 
     public void setInfoTerbaru(String info_terbaru) {
         this.info_terbaru = info_terbaru;
-     }
+    }
 }
