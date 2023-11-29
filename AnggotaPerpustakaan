@@ -1,74 +1,140 @@
-package kelompokpbo;
+package si_perpustakaan.modern.dan.efisien;
 
-
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-/**
- *
- * @author User
- */
 public class AnggotaPerpustakaan {
     Scanner input = new Scanner(System.in);
-    private String[] nama;
-    String[] name = new String[100];
-    private int[] nomorAnggota;
-    int[] id = new int[100];
-    private String[] Alamat;
-    String[] alamat = new String[100];
+    private List<String> nama = new ArrayList<>();
+    private List<Integer> nomorAnggota = new ArrayList<>();
+    private List<String> alamat = new ArrayList<>();
     private List<TransaksiPeminjaman> riwayatPeminjaman = new ArrayList<>();
     private Notifikasi notifikasi;
+    private Buku buku;
 
-    public AnggotaPerpustakaan(String[] nama, int[] nomorAnggota, String[] Alamat, Notifikasi notifikasi) {
-        this.nama = nama;
-        this.nomorAnggota = nomorAnggota;
-        this.Alamat = Alamat;
-        this.notifikasi = notifikasi;
+    private String user;
+    
+    TransaksiPeminjaman pinjam = new TransaksiPeminjaman(new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
+    TransaksiPengembalian balik = new TransaksiPengembalian(new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
+ 
+    public AnggotaPerpustakaan(String user) {
+        this.nomorAnggota = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+        this.nama = new ArrayList<>(Arrays.asList("Keziaa", "Ayuu", "Nadyaa", "Vanes", "Kevin", "Milaa"));
+        this.alamat = new ArrayList<>(Arrays.asList("Bali", "Bandar Lampung", "Bandung", "Tanggerang", "Jakarta", "Tangerang"));
+        this.user = user;
     }
     
-    public void pinjamBuku(Buku buku, TransaksiPeminjaman transaksi) {
-        // peminjaman buku
-        riwayatPeminjaman.add(transaksi);
+    public AnggotaPerpustakaan(Notifikasi notifikasi) {
+        this.notifikasi = notifikasi;
+    }
+
+    public void pinjamBuku(){
+        System.out.println("Anda Memasuki menu Peminjaman Buku\n Daftar Buku yang ada di Perpustakaan Modern XYZ adalah : ");
+        int panjangbaris = buku.getJudul().size();
+        for (int i=0; i<panjangbaris; i++){
+                System.out.println((i+1) + ".");
+                System.out.println("Judul : " + buku.getJudul().get(i));
+                System.out.println("Penulis/Penerbit : " + buku.getPengarang().get(i));
+                System.out.println("ISBN : " + buku.getNomorISBN().get(i));
+                System.out.println("Stok Buku : " + buku.getStok().get(i) + " pcs");
+                System.out.println("");
+        }
+        System.out.println("Masukkan nomor urut buku yang ingin anda pinjam : ");
+        int nourut = input.nextInt();
+          if (buku.getStok().get(nourut-1) > 0) {
+              System.out.println("Proses berhasil!");
+              System.out.println("Anda telah meminjam buku " + buku.getJudul().get(nourut-1));
+ 
+              // Update stock
+              buku.getStok().set(nourut-1, buku.getStok().get(nourut-1) - 1);
+              System.out.println("Stok buku setelah peminjaman: " + buku.getStok().get(nourut-1));
+ 
+              // Assuming pinjam is an object with a getJudul() method
+            pinjam.getJudul().add(buku.getJudul().get(nourut - 1));
+            pinjam.getNama().add(this.user);
+            pinjam.getTanggalPinjam().add(LocalDateTime.now(/*ZoneId.of("Asia/Jakarta")*/));
+ 
+            // Add 7 days to each LocalDateTime in the list
+            LocalDateTime tanggalPinjam = pinjam.getTanggalPinjam().get(pinjam.getTanggalPinjam().size() - 1);
+            LocalDateTime tanggalKembali = tanggalPinjam.plusDays(7);
+            pinjam.getTanggalKembali().add(tanggalKembali);
+          } 
+          else if (buku.getStok().get(nourut-1)<=0){
+            System.out.println("Proses peminjaman Gagal!");
+          }
     }
 
     public void kembalikanBuku(Buku buku, TransaksiPengembalian transaksi) {
         // pengembalian buku
-        riwayatPeminjaman.removeIf(t -> t.getBuku().equals(buku));
+        System.out.println("Anda memasuki menu Pengembalian Buku Pinjaman!");
+            int panjangbaris = buku.getJudul().size();
+            for (int i=0; i<panjangbaris; i++){
+                System.out.println((i+1) + ".");
+                System.out.println("Judul : " + buku.getJudul().get(i));
+                System.out.println("Penulis/Penerbit : " + buku.getPengarang().get(i));
+                System.out.println("ISBN : " + buku.getNomorISBN().get(i));
+                System.out.println("Stok Buku : " + buku.getStok().get(i) + " pcs");
+                System.out.println("");
+            }
+            System.out.println("Masukkan nomor urut buku yang ingin anda kembalikan : ");
+            int nourut = input.nextInt();
+            buku.getStok().set(nourut-1, buku.getStok().get(nourut-1) + 1);
+            System.out.println("Proses berhasil!\n" +"Anda telah mengembalikan buku " + buku.getJudul().get(nourut-1));
     }
-    
+
     public void lihatRiwayatPeminjaman() {
         // melihat riwayat peminjaman
         for (TransaksiPeminjaman transaksi : riwayatPeminjaman) {
-             System.out.println("Tanggal: " + transaksi.getTanggal() + ", Buku: " + transaksi.getBuku().getJudul());
+            System.out.println("Tanggal: " + transaksi.getTanggalPinjam() + ", Buku: " + transaksi.getBuku().getJudul());
         }
     }
-    
-    public void TambahAnggota(){
+
+    public void tambahAnggota() {
         System.out.println("Anda telah memasuki menu daftar anggota baru!\n"
                 + "Silahkan Masukkan Nama Anda! : ");
         String namaa = input.nextLine();
         System.out.println("Masukkan Alamat anda!");
-        String Alamaat = input.nextLine();
-        int i;
-        for (i = 0; i<nama.length; i++){
-            if (nama[i] == null || nama[i].equals("")){
-                nama[i]=namaa;
-                nomorAnggota[i]=i+1;
-                Alamat[i]=Alamaat;
+        String alamaat = input.nextLine();
+
+        nama.add(namaa);
+        nomorAnggota.add(nama.size()); // Menggunakan ukuran ArrayList sebagai nomor anggota
+        alamat.add(alamaat);
+
+        System.out.println("\nNama : " + namaa + "\nNomor Anggota : " + nomorAnggota.get(nama.size() - 1) +
+                "\nAlamat = " + alamaat + "\n Selamat! Anda telah berhasil melakukan pendaftaran!");
+    }
+
+    public void hapusAnggota(int nomorAnggota) {
+        int index = nomorAnggota - 1;
+        if (index >= 0 && index < nama.size()) {
+            nama.remove(index);
+            this.nomorAnggota.remove(index);
+            alamat.remove(index);
+            System.out.println("Anggota dengan nomor anggota " + nomorAnggota + " berhasil dihapus.");
+        } else {
+            System.out.println("Nomor anggota tidak valid.");
+        }
+    }
+    
+    public void temukanAnggota(int nomorAnggota){
+        int index = -1;
+
+        for (int i = 0; i < this.nomorAnggota.size(); i++) {
+            if (this.nomorAnggota.get(i) == nomorAnggota) {
+                index = i;
                 break;
             }
         }
-        System.out.println("\nNama : " + nama[i] + "\nNomor Anggota : " + nomorAnggota[i] +
-        "\nAlamat = " + Alamat[i] + "\n Selamat! Anda telah berhasil melakukan pendaftaran!");
-}
 
-    boolean getNama() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (index != -1) {
+            System.out.println("Nomor anggota " + nomorAnggota + " ditemukan:");
+            System.out.println("Nama: " + nama.get(index));
+            System.out.println("Alamat: " + alamat.get(index));
+        } else {
+            System.out.println("Anggota dengan nomor anggota " + nomorAnggota + " tidak ditemukan.");
+        }
     }
 }
