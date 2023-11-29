@@ -1,14 +1,22 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package si_perpustakaan.modern.dan.efisien;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * @author ASUS
+ */
 public class TransaksiPengembalian {
     private String tanggal;
     private String waktu;
     private Buku buku;
-    private AnggotaPerpustakaan anggota;
+    private String anggota;
 
-    public TransaksiPengembalian(String tanggal, String waktu, Buku buku, AnggotaPerpustakaan anggota) {
+    public TransaksiPengembalian(String tanggal, String waktu, Buku buku, String anggota) {
         this.tanggal = tanggal;
         this.waktu = waktu;
         this.buku = buku;
@@ -23,7 +31,7 @@ public class TransaksiPengembalian {
         return buku;
     }
 
-    public AnggotaPerpustakaan getAnggota() {
+    public String getAnggota() {
         return anggota;
     }
 
@@ -39,7 +47,7 @@ public class TransaksiPengembalian {
         this.buku = buku;
     }
 
-    public void setAnggota(AnggotaPerpustakaan anggota) {
+    public void setAnggota(String anggota) {
         this.anggota = anggota;
     }
 }
