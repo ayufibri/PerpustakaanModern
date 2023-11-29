@@ -1,18 +1,28 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
 package si_perpustakaan.modern.dan.efisien;
 
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ *
+ * @author ASUS
+ */
 public class SI_PerpustakaanModernDanEfisien {
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Selamat datang di Perpustakaan Modern dan Efisien:");
         String namaAnggota = scanner.nextLine();
         AnggotaPerpustakaan anggota = new AnggotaPerpustakaan(namaAnggota);
-
+//        AnggotaPerpustakaan anggota = new AnggotaPerpustakaan("John Doe");
         Buku buku = new Buku();
-        
         int choice;
         
         do {
@@ -31,7 +41,7 @@ public class SI_PerpustakaanModernDanEfisien {
             switch (choice) {
                 case 1:
                     // Daftar Anggota
-                    anggota.tampilkanAnggota();
+                    anggota.tambahAnggota();
                     break;
                 case 2:
                     // Cari Buku
