@@ -1,0 +1,58 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package kelompokpbo;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class KelompokPBO {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        Admin admin = new Admin(new ArrayList<>()); // Assuming Admin class has a constructor
+
+        while (true) {
+            printMenu();
+            System.out.print("Silahkan pilih menu : ");
+            String menu = input.nextLine();
+
+            switch (menu) {
+                case "1":
+                    admin.tampilkanDaftarAnggota();
+                    break;
+
+                case "2":
+                    System.out.print("Silahkan masukkan judul buku yang ingin dicari : ");
+                    String judul = input.nextLine();
+
+                    if (admin.findBuku(judul)) {
+                        System.out.println("Buku " + judul + " ditemukan.");
+                    } else {
+                        System.out.println("Maaf, buku " + judul + " tidak ditemukan.");
+                    }
+                    break;
+                    
+                // Add other cases...
+
+                case "5":
+                    System.exit(0);
+                    break;
+
+                default:
+                    System.out.println("Menu tidak tersedia!");
+                    break;
+            }
+        }
+    }
+
+    public static void printMenu() {
+        System.out.println("Daftar Menu");
+        System.out.println("1. Tampilkan Daftar Anggota");
+        System.out.println("2. Cari Buku");
+        System.out.println("3. Pinjam Buku");
+        System.out.println("4. Kembalikan Buku");
+        System.out.println("5. Keluar");
+    }
+}
