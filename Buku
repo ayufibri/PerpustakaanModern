@@ -12,7 +12,7 @@ public class Buku {
     private List<String> nomorISBN = new ArrayList<>();
     private List<Boolean> statusKetersediaan = new ArrayList<>();
     private List<Integer> stok = new ArrayList<>();
-    
+
     public Buku() {
         this.judul = new ArrayList<>(Arrays.asList("Bumi Manusia", "Rindu", "Literature Alive", 
                                                   "The Alchemist", "Cinta Itu Luka"));
@@ -38,7 +38,7 @@ public class Buku {
     public void setStok(List<Integer> stok) {
         this.stok = stok;
     }
-    
+
     public List<String> getJudul() {
         return judul;
     }
@@ -72,42 +72,42 @@ public class Buku {
     }
 
     public void informasiBuku() {
-        System.out.println("Anda memasuki halaman \"Cek Informasi Buku\"\nMasukkan judul buku yang ingin anda cari dalam huruf Kapital! : ");
+        System.out.println("Anda memasuki halaman \"Cek Informasi Buku\"\nMasukkan judul buku yang ingin anda cari : ");
         int i = 0;
         boolean cek = false;
         if (!cek){
             final String judull = input.nextLine();
-            for (i=0; i<judul.size(); i++){
-            if(judul.get(i).equalsIgnoreCase(judull)){
+            for (i=0; i<getJudul().size(); i++){
+            if(getJudul().get(i).equalsIgnoreCase(judull)){
                 cek = true;
                 break;
                 }
             }
         }
-        else if (!cek){
+        if (!cek){
             System.out.println("Pencarian dengan judul Gagal!\nMasukkan Nomor ISBN buku!");
             final String ISBN = input.nextLine();
-            for (i=0; i<nomorISBN.size(); i++){
-            if(nomorISBN.get(i).equals(ISBN)){
+            for (i=0; i<getNomorISBN().size(); i++){
+            if(getNomorISBN().get(i).equals(ISBN)){
                 cek = true;
                 break;
                 }
             }
         }
-        else if (!cek){
+        if (!cek){
             final String penulis = input.nextLine();
-            for (i=0; i<pengarang.size(); i++){
-                if(pengarang.get(i).equalsIgnoreCase(penulis)){
+            for (i=0; i<getPengarang().size(); i++){
+                if(getPengarang().get(i).equalsIgnoreCase(penulis)){
                     cek = true;
                     break;
                 }
             }
         }
-        else if (cek){
-            System.out.println("Informasi buku Ditemukan!\nJudul : " + judul.get(i) +
-                               "\nPenulis / Penerbit : " + pengarang.get(i) +
-                               "\nISBN : " + nomorISBN.get(i) +
-                               "\nStok buku tersedia : " + stok.get(i) + " pcs.");
+        if (cek){
+            System.out.println("Informasi buku Ditemukan!\nJudul : " + getJudul().get(i) +
+                               "\nPenulis / Penerbit : " + getPengarang().get(i) +
+                               "\nISBN : " + getNomorISBN().get(i) +
+                               "\nStok buku tersedia : " + getStok().get(i) + " pcs.");
         }
         else {
           System.out.println("Maaf, buku yang anda cari tidak ditemukan!");
