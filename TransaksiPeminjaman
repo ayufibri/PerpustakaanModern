@@ -1,56 +1,50 @@
-package kelompokpbo;
+package si_perpustakaan.modern.dan.efisien;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- *
- * @author User
- */
-class TransaksiPeminjaman {
-     private String tanggal;
-    private String waktu;
-    private int durasi;
-    private AnggotaPerpustakaan anggota;
-    private Buku buku;
+public class TransaksiPeminjaman {
+    private List<String> judul;
+    private List<String> nama;
+    private List<LocalDateTime> tanggalPinjam;
+    private List<LocalDateTime> tanggalKembali;
+    Buku buku = new Buku();
 
-    public void catatPeminjaman() {
-        //  pencatatan peminjaman
-        System.out.println("Peminjaman dicatat pada " + tanggal + " " + waktu);
+    public TransaksiPeminjaman(List<String> judul, List<String> nama, List<LocalDateTime> tanggalPinjam) {
+    this.judul = judul;
+    this.nama = nama;
+    this.tanggalPinjam = tanggalPinjam;
+
+    // Inisialisasi tanggalKembali berdasarkan tanggalPinjam
+    this.tanggalKembali = new ArrayList<>();
+    for (LocalDateTime pinjam : tanggalPinjam) {
+        LocalDateTime kembali = pinjam.plusDays(7); // Misalnya, durasi peminjaman adalah 7 hari
+        tanggalKembali.add(kembali);
     }
-
-    public void hitungDurasi() {
-        // perhitungan durasi peminjaman
-        System.out.println("Durasi peminjaman: " + durasi + " hari");
-    }
+}
 
     public Buku getBuku() {
         return buku;
     }
 
-    public String getTanggal() {
-        return tanggal;
-    }
-
-    public void setTanggal(String tanggal) {
-        this.tanggal = tanggal;
-    }
-
-    public void setWaktu(String waktu) {
-        this.waktu = waktu;
-    }
-
-    public void setDurasi(int durasi) {
-        this.durasi = durasi;
-    }
-
-    public void setAnggota(AnggotaPerpustakaan anggota) {
-        this.anggota = anggota;
-    }
-    
     public void setBuku(Buku buku) {
-    this.buku = buku;
-}
+        this.buku = buku;
+    }
+
+    public List<String> getJudul() {
+        return judul;
+    }
+
+    public List<String> getNama() {
+        return nama;
+    }
+
+    public List<LocalDateTime> getTanggalPinjam() {
+        return tanggalPinjam;
+    }
+
+    public List<LocalDateTime> getTanggalKembali() {
+        return tanggalKembali;
+    }
 }
