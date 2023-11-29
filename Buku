@@ -1,0 +1,70 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package kelompokpbo;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author User
+ */
+public class Buku {
+    Scanner input = new Scanner(System.in);
+    private String[] judul;
+    String[] Judul = new String[100];
+    private String[] pengarang;
+    String[] Pengarang = new String[100];
+    private String[] nomorISBN;
+    String[] noISBN = new String[100];
+    private boolean[] statusKetersediaan;
+    boolean[] StatusKetersediaan = new boolean[100];
+    private String[][] buku;
+
+    public Buku(String[] judul, String[] pengarang, String[] nomorISBN, boolean[] statusKetersediaan, String[][] buku) {
+        this.judul = judul;
+        this.pengarang = pengarang;
+        this.nomorISBN = nomorISBN;
+        this.statusKetersediaan = statusKetersediaan;
+        this.buku = new String[][] {{"Cinta Itu Luka", "Eka Kurniawan", "9786020302028", "Tidak Tersedia"},
+                                    {"Bumi Manusia", "Pramoedya Ananta Toer", "9789792254869", "Tersedia"},
+                                    {"Lelaki Harimau", "Eka Kurniawan", "9786020302042", "Tidak Tersedia"},
+                                    {"Rindu", "Tere Liye", "9786021393823", "Tersedia"},
+                                    {"Tenggelamnya Kapal Van Der Wijck", "Hamka", "9789792254869", "Tersedia"},
+                                    {"The Da Vinci Code", "Dan Brown", "9780307474278", "Tidak Tersedia"},
+                                    {"The Alchemist", "Paulo Coelho", "9780062315007", "Tersedia"},
+                                    {"The Pillars of the Earth", "Ken Follett", "9780451225245", "Tersedia"},
+                                    {"Haidar Musyafa", "Tahir Jabbar", "9786020302042", "Tidak Tersedia"},
+                                    {"Literature Alive", "William Alexander Mason", "9780871923613", "Tersedia"}};;
+    }
+    
+    public String[] getJudul() {
+        return Judul;
+    }
+
+    public void setJudul(String[] Judul) {
+        this.Judul = Judul;
+    }
+    
+    public void informasiBuku() {
+        // informasi buku
+        String judulBuku = input.nextLine();
+        int i;
+        boolean ada = false;
+        for(i=0; i<judul.length; i++){
+            if (judul[i].equals(judulBuku)){
+                ada = true;
+                break;
+            }
+        }
+        if (ada == true){
+            System.out.println("Buku ditemukan\nJudul: " + judul[i] + ", Pengarang: " + pengarang[i]);
+        }
+    }
+
+    public void cekKetersediaan() {
+        // mengecek ketersediaan buku
+        System.out.println("Status Ketersediaan: " + statusKetersediaan);
+}
+}
