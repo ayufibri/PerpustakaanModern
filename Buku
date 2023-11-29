@@ -1,70 +1,160 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package kelompokpbo;
+package si_perpustakaan.modern.dan.efisien;
 
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-/**
- *
- * @author User
- */
 public class Buku {
     Scanner input = new Scanner(System.in);
-    private String[] judul;
-    String[] Judul = new String[100];
-    private String[] pengarang;
-    String[] Pengarang = new String[100];
-    private String[] nomorISBN;
-    String[] noISBN = new String[100];
-    private boolean[] statusKetersediaan;
-    boolean[] StatusKetersediaan = new boolean[100];
-    private String[][] buku;
+    private List<String> judul = new ArrayList<>();
+    private List<String> pengarang = new ArrayList<>();
+    private List<String> nomorISBN = new ArrayList<>();
+    private List<Boolean> statusKetersediaan = new ArrayList<>();
+    private List<Integer> stok = new ArrayList<>();
+    
+    public Buku() {
+        this.judul = new ArrayList<>(Arrays.asList("Bumi Manusia", "Rindu", "Literature Alive", 
+                                                  "The Alchemist", "Cinta Itu Luka"));
+        this.pengarang = new ArrayList<>(Arrays.asList("Pramoedya Ananta Toer", "Tere Liye", "William Alexander Mason",
+                                                      "Paulo Coelho", "Eka Kurniawan"));
+        this.nomorISBN = new ArrayList<>(Arrays.asList("9789792254869", "9786021393823", "9780871923613",
+                                                      "9780062315007", "9786020302028"));
+        this.stok = new ArrayList<>(Arrays.asList(4, 2, 1, 3, 5));
+    }
 
-    public Buku(String[] judul, String[] pengarang, String[] nomorISBN, boolean[] statusKetersediaan, String[][] buku) {
+    public Scanner getInput() {
+        return input;
+    }
+
+    public void setInput(Scanner input) {
+        this.input = input;
+    }
+
+    public List<Integer> getStok() {
+        return stok;
+    }
+
+    public void setStok(List<Integer> stok) {
+        this.stok = stok;
+    }
+    
+    public List<String> getJudul() {
+        return judul;
+    }
+
+    public void setJudul(List<String> judul) {
         this.judul = judul;
-        this.pengarang = pengarang;
-        this.nomorISBN = nomorISBN;
-        this.statusKetersediaan = statusKetersediaan;
-        this.buku = new String[][] {{"Cinta Itu Luka", "Eka Kurniawan", "9786020302028", "Tidak Tersedia"},
-                                    {"Bumi Manusia", "Pramoedya Ananta Toer", "9789792254869", "Tersedia"},
-                                    {"Lelaki Harimau", "Eka Kurniawan", "9786020302042", "Tidak Tersedia"},
-                                    {"Rindu", "Tere Liye", "9786021393823", "Tersedia"},
-                                    {"Tenggelamnya Kapal Van Der Wijck", "Hamka", "9789792254869", "Tersedia"},
-                                    {"The Da Vinci Code", "Dan Brown", "9780307474278", "Tidak Tersedia"},
-                                    {"The Alchemist", "Paulo Coelho", "9780062315007", "Tersedia"},
-                                    {"The Pillars of the Earth", "Ken Follett", "9780451225245", "Tersedia"},
-                                    {"Haidar Musyafa", "Tahir Jabbar", "9786020302042", "Tidak Tersedia"},
-                                    {"Literature Alive", "William Alexander Mason", "9780871923613", "Tersedia"}};;
-    }
-    
-    public String[] getJudul() {
-        return Judul;
     }
 
-    public void setJudul(String[] Judul) {
-        this.Judul = Judul;
+    public List<String> getPengarang() {
+        return pengarang;
     }
-    
+
+    public void setPengarang(List<String> pengarang) {
+        this.pengarang = pengarang;
+    }
+
+    public List<String> getNomorISBN() {
+        return nomorISBN;
+    }
+
+    public void setNomorISBN(List<String> nomorISBN) {
+        this.nomorISBN = nomorISBN;
+    }
+
+    public List<Boolean> getStatusKetersediaan() {
+        return statusKetersediaan;
+    }
+
+    public void setStatusKetersediaan(List<Boolean> statusKetersediaan) {
+        this.statusKetersediaan = statusKetersediaan;
+    }
+
     public void informasiBuku() {
-        // informasi buku
-        String judulBuku = input.nextLine();
-        int i;
-        boolean ada = false;
-        for(i=0; i<judul.length; i++){
-            if (judul[i].equals(judulBuku)){
-                ada = true;
+        System.out.println("Anda memasuki halaman \"Cek Informasi Buku\"\nMasukkan judul buku yang ingin anda cari dalam huruf Kapital! : ");
+        int i = 0;
+        boolean cek = false;
+        if (!cek){
+            final String judull = input.nextLine();
+            for (i=0; i<judul.size(); i++){
+            if(judul.get(i).equalsIgnoreCase(judull)){
+                cek = true;
                 break;
+                }
             }
         }
-        if (ada == true){
-            System.out.println("Buku ditemukan\nJudul: " + judul[i] + ", Pengarang: " + pengarang[i]);
+        else if (!cek){
+            System.out.println("Pencarian dengan judul Gagal!\nMasukkan Nomor ISBN buku!");
+            final String ISBN = input.nextLine();
+            for (i=0; i<nomorISBN.size(); i++){
+            if(nomorISBN.get(i).equals(ISBN)){
+                cek = true;
+                break;
+                }
+            }
         }
+        else if (!cek){
+            final String penulis = input.nextLine();
+            for (i=0; i<pengarang.size(); i++){
+                if(pengarang.get(i).equalsIgnoreCase(penulis)){
+                    cek = true;
+                    break;
+                }
+            }
+        }
+        else if (cek){
+            System.out.println("Informasi buku Ditemukan!\nJudul : " + judul.get(i) +
+                               "\nPenulis / Penerbit : " + pengarang.get(i) +
+                               "\nISBN : " + nomorISBN.get(i) +
+                               "\nStok buku tersedia : " + stok.get(i) + " pcs.");
+        }
+        else {
+          System.out.println("Maaf, buku yang anda cari tidak ditemukan!");
+        } 
     }
 
     public void cekKetersediaan() {
-        // mengecek ketersediaan buku
-        System.out.println("Status Ketersediaan: " + statusKetersediaan);
-}
+        System.out.println("Anda memasuki menu \"Cek Ketersediaan Buku\"\nMasukkan judul buku : ");
+        int i=0;
+        boolean check=false;
+        if(!check){
+            final String juduul = input.nextLine();
+            for (i=0; i<judul.size(); i++){
+                if (judul.get(i).equals(juduul)){
+                    check=true;
+                    break;
+                }
+            }
+        }
+        if(!check){
+            System.out.println("Pencarian dengan judul Gagal!\nMasukkan nomor ISBN buku : ");
+            final String ISBN = input.nextLine();
+            for (i=0; i<nomorISBN.size(); i++){
+                if (nomorISBN.get(i).equals(ISBN)){
+                    check=true;
+                    break;
+                }
+            }
+        }
+        if(!check){
+            System.out.println("Pencarian dengan nomor ISBN Gagal!\nMasukkan nama Penulis : ");
+            final String penulis = input.nextLine();
+            for (i=0; i<pengarang.size(); i++){
+                if (pengarang.get(i).equals(penulis)){
+                    check=true;
+                    break;
+                }
+            }
+        }
+        if (check){
+            System.out.println("Informasi buku Ditemukan!\nJudul : " + judul.get(i) +
+                               "\nPenulis / Penerbit : " + pengarang.get(i) +
+                               "\nISBN : " + nomorISBN.get(i) +
+                               "\nStok buku tersedia : " + stok.get(i) + " pcs.");
+        }
+        if (!check){
+            System.out.println("Maaf, buku yang anda cari tidak tersedia.");
+        }
+    }
 }
