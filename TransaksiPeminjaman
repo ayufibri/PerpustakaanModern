@@ -1,0 +1,56 @@
+package kelompokpbo;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author User
+ */
+class TransaksiPeminjaman {
+     private String tanggal;
+    private String waktu;
+    private int durasi;
+    private AnggotaPerpustakaan anggota;
+    private Buku buku;
+
+    public void catatPeminjaman() {
+        //  pencatatan peminjaman
+        System.out.println("Peminjaman dicatat pada " + tanggal + " " + waktu);
+    }
+
+    public void hitungDurasi() {
+        // perhitungan durasi peminjaman
+        System.out.println("Durasi peminjaman: " + durasi + " hari");
+    }
+
+    public Buku getBuku() {
+        return buku;
+    }
+
+    public String getTanggal() {
+        return tanggal;
+    }
+
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
+    }
+
+    public void setWaktu(String waktu) {
+        this.waktu = waktu;
+    }
+
+    public void setDurasi(int durasi) {
+        this.durasi = durasi;
+    }
+
+    public void setAnggota(AnggotaPerpustakaan anggota) {
+        this.anggota = anggota;
+    }
+    
+    public void setBuku(Buku buku) {
+    this.buku = buku;
+}
+}
