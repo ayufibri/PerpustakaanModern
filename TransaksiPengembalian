@@ -1,0 +1,44 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package kelompokpbo;
+
+/**
+ *
+ * @author User
+ */
+public class TransaksiPengembalian {
+    private String tanggal;
+    private String waktu;
+    private Buku buku;
+    private AnggotaPerpustakaan anggota;
+
+    public void catatPengembalian() {
+        System.out.println("Pengembalian dicatat pada " + tanggal + " " + waktu);
+    }
+
+    public Buku getBuku() {
+        return buku;
+    }
+
+    public AnggotaPerpustakaan getAnggota() {
+        return anggota;
+    }
+
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
+    }
+
+    public void setWaktu(String waktu) {
+        this.waktu = waktu;
+    }
+
+    public void setBuku(Buku buku) {
+        this.buku = buku;
+    }
+
+    public void setAnggota(AnggotaPerpustakaan anggota) {
+        this.anggota = anggota;
+}
+}
