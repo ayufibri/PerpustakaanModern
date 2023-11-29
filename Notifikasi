@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package kelompokpbo;
+package si_perpustakaan.modern.dan.efisien;
 
-/**
- *
- * @author User
- */
 public class Notifikasi {
      private String batas_waktu; 
     private String info_terbaru; 
@@ -31,5 +23,5 @@ public class Notifikasi {
 
     public void setInfoTerbaru(String info_terbaru) {
         this.info_terbaru = info_terbaru;
-}
+     }
 }
