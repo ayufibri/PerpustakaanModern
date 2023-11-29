@@ -1,58 +1,64 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
-package kelompokpbo;
+package si_perpustakaan.modern.dan.efisien;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class KelompokPBO {
+public class SI_PerpustakaanModernDanEfisien {
 
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        Admin admin = new Admin(new ArrayList<>()); // Assuming Admin class has a constructor
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Selamat datang di Perpustakaan Modern dan Efisien:");
+        String namaAnggota = scanner.nextLine();
+        AnggotaPerpustakaan anggota = new AnggotaPerpustakaan(namaAnggota);
 
-        while (true) {
-            printMenu();
-            System.out.print("Silahkan pilih menu : ");
-            String menu = input.nextLine();
-
-            switch (menu) {
-                case "1":
-                    admin.tampilkanDaftarAnggota();
+        Buku buku = new Buku();
+        
+        int choice;
+        
+        do {
+            System.out.println("========== Menu Perpustakaan ==========");
+            System.out.println("1. Daftar Anggota");
+            System.out.println("2. Cari Buku");
+            System.out.println("3. Tampilkan List Buku");
+            System.out.println("4. Pinjam Buku");
+            System.out.println("5. Kembalikan Buku");
+            System.out.println("0. Keluar");
+            System.out.print("Pilih Menu (0-5): ");
+            
+            choice = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
+            
+            switch (choice) {
+                case 1:
+                    // Daftar Anggota
+                    anggota.tampilkanAnggota();
                     break;
-
-                case "2":
-                    System.out.print("Silahkan masukkan judul buku yang ingin dicari : ");
-                    String judul = input.nextLine();
-
-                    if (admin.findBuku(judul)) {
-                        System.out.println("Buku " + judul + " ditemukan.");
-                    } else {
-                        System.out.println("Maaf, buku " + judul + " tidak ditemukan.");
-                    }
+                case 2:
+                    // Cari Buku
+                    buku.informasiBuku();
                     break;
-                    
-                // Add other cases...
-
-                case "5":
-                    System.exit(0);
+                case 3:
+                    // Tampilkan List Buku
+                    admin.tampilkanDaftarBuku();
                     break;
-
+                case 4:
+                    // Pinjam Buku
+                    anggota.pinjamBuku();
+                    break;
+                case 5:
+                    // Kembalikan Buku
+                    anggota.kembalikanBuku();
+                    break;
+                case 0:
+                    System.out.println("Terima kasih!");
+                    break;
                 default:
-                    System.out.println("Menu tidak tersedia!");
+                    System.out.println("Pilihan tidak valid. Silakan coba lagi.");
                     break;
             }
-        }
-    }
-
-    public static void printMenu() {
-        System.out.println("Daftar Menu");
-        System.out.println("1. Tampilkan Daftar Anggota");
-        System.out.println("2. Cari Buku");
-        System.out.println("3. Pinjam Buku");
-        System.out.println("4. Kembalikan Buku");
-        System.out.println("5. Keluar");
+            
+        } while (choice != 0);
+        
+        scanner.close();
     }
 }
