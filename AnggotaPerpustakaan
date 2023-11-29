@@ -1,0 +1,74 @@
+package kelompokpbo;
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author User
+ */
+public class AnggotaPerpustakaan {
+    Scanner input = new Scanner(System.in);
+    private String[] nama;
+    String[] name = new String[100];
+    private int[] nomorAnggota;
+    int[] id = new int[100];
+    private String[] Alamat;
+    String[] alamat = new String[100];
+    private List<TransaksiPeminjaman> riwayatPeminjaman = new ArrayList<>();
+    private Notifikasi notifikasi;
+
+    public AnggotaPerpustakaan(String[] nama, int[] nomorAnggota, String[] Alamat, Notifikasi notifikasi) {
+        this.nama = nama;
+        this.nomorAnggota = nomorAnggota;
+        this.Alamat = Alamat;
+        this.notifikasi = notifikasi;
+    }
+    
+    public void pinjamBuku(Buku buku, TransaksiPeminjaman transaksi) {
+        // peminjaman buku
+        riwayatPeminjaman.add(transaksi);
+    }
+
+    public void kembalikanBuku(Buku buku, TransaksiPengembalian transaksi) {
+        // pengembalian buku
+        riwayatPeminjaman.removeIf(t -> t.getBuku().equals(buku));
+    }
+    
+    public void lihatRiwayatPeminjaman() {
+        // melihat riwayat peminjaman
+        for (TransaksiPeminjaman transaksi : riwayatPeminjaman) {
+             System.out.println("Tanggal: " + transaksi.getTanggal() + ", Buku: " + transaksi.getBuku().getJudul());
+        }
+    }
+    
+    public void TambahAnggota(){
+        System.out.println("Anda telah memasuki menu daftar anggota baru!\n"
+                + "Silahkan Masukkan Nama Anda! : ");
+        String namaa = input.nextLine();
+        System.out.println("Masukkan Alamat anda!");
+        String Alamaat = input.nextLine();
+        int i;
+        for (i = 0; i<nama.length; i++){
+            if (nama[i] == null || nama[i].equals("")){
+                nama[i]=namaa;
+                nomorAnggota[i]=i+1;
+                Alamat[i]=Alamaat;
+                break;
+            }
+        }
+        System.out.println("\nNama : " + nama[i] + "\nNomor Anggota : " + nomorAnggota[i] +
+        "\nAlamat = " + Alamat[i] + "\n Selamat! Anda telah berhasil melakukan pendaftaran!");
+}
+
+    boolean getNama() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+}
