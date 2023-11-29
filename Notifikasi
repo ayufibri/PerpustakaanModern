@@ -1,0 +1,35 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package kelompokpbo;
+
+/**
+ *
+ * @author User
+ */
+public class Notifikasi {
+     private String batas_waktu; 
+    private String info_terbaru; 
+
+    public void kirimNotifikasi() {
+        // pengiriman notifikasi
+        System.out.println("Notifikasi dikirim: " + info_terbaru);
+    }
+
+    public String getBatasWaktu() {
+        return batas_waktu;
+    }
+
+    public void setBatasWaktu(String batas_waktu) {
+        this.batas_waktu = batas_waktu;
+    }
+
+    public String getInfoTerbaru() {
+        return info_terbaru;
+    }
+
+    public void setInfoTerbaru(String info_terbaru) {
+        this.info_terbaru = info_terbaru;
+}
+}
