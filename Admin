@@ -2,33 +2,93 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package kelompokpbo;
-
+package si_perpustakaan.modern.dan.efisien;
+import java.util.ArrayList;
 import java.util.List;
-
+import java.lang.String;
+import java.util.Scanner;
+/**
+ *
+ * @author ASUS
+ */
 public class Admin {
+    Scanner input = new Scanner(System.in);
     private String namaAdmin;
     private String jabatan;
     private List<String> aktivitasList;
-    private List<AnggotaPerpustakaan> daftarAnggota; // Menambahkan daftar anggota
+    private ArrayList<Buku> daftarBuku;
+    Buku buku = new Buku();
 
-    public Admin(List<String> aktivitasList, List<AnggotaPerpustakaan> daftarAnggota) {
-        this.aktivitasList = aktivitasList;
-        this.daftarAnggota = daftarAnggota; // Inisialisasi daftar anggota
+    public Admin(String namaAdmin, String jabatan, List<String> aktivitasList) {
+        this.namaAdmin = namaAdmin;
+        this.jabatan = jabatan;
+        this.aktivitasList = aktivitasList; 
+        this.daftarBuku = daftarBuku;   
     }
 
-    // Metode-metode lain tetap sama
+    public Admin(List<String> aktivitasList) {
+        this.aktivitasList = aktivitasList;
+    }
 
-    public void tampilkanDaftarAnggota() {
-        System.out.println("Daftar Anggota:");
-        for (AnggotaPerpustakaan anggota : daftarAnggota) {
-            System.out.println(anggota.getNama()); // Menggunakan metode getNama() atau metode lain yang sesuai
+    public String getNamaAdmin() {
+        return namaAdmin;
+    }
+
+    public void setNamaAdmin(String namaAdmin) {
+        this.namaAdmin = namaAdmin;
+    }
+
+    public String getjabatan() {
+        return jabatan;
+    }
+
+    public void setPeran(String peran) {
+        this.jabatan = jabatan;
+    }
+
+    public ArrayList<Buku> getDaftarBuku() {
+        return daftarBuku;
+    }
+
+    public void setDaftarBuku(ArrayList<Buku> daftarBuku) {
+        this.daftarBuku = daftarBuku;
+    }
+    
+    public List<String> getAktivitasList() {
+        return aktivitasList;
+    }
+
+    public void setAktivitasList(List<String> aktivitasList) {
+        this.aktivitasList = aktivitasList;
+    }
+    
+    public void aturAnggota(){
+        System.out.println("Admin " + namaAdmin + jabatan + " anggota");
+    }
+    
+    public boolean aturBuku(){
+        String judul = input.nextLine();
+        for (int i=0; i<buku.getJudul().size(); i++) {
+            if (buku.getJudul().get(i).equalsIgnoreCase(judul)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public void laporanAktivitas(){
+        System.out.println("Laporan Aktivitas Admin " + namaAdmin + ": ");
+        System.out.println();
+        for (String aktivitas : aktivitasList) {
+            System.out.println(aktivitas);
         }
     }
-
-    public boolean findBuku(String judul) {
-        // Implementasi pencarian buku
-        // ...
-        return false; // Ganti dengan implementasi yang sesuai
+    
+    public void tampilkanDaftarBuku(Iterable<Buku> daftarBuku) {
+        System.out.println(">>> Daftar Buku <<<");
+       
+        for (Buku buku : daftarBuku) {
+            System.out.println("#" + buku.getNomorISBN()+ " " + buku.getJudul() + " - " + buku.getPengarang() + ". Stock = " + buku.getStatusKetersediaan());            
+        }
     }
 }
