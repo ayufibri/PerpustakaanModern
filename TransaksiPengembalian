@@ -1,53 +1,45 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package si_perpustakaan.modern.dan.efisien;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author ASUS
- */
 public class TransaksiPengembalian {
-    private String tanggal;
-    private String waktu;
-    private Buku buku;
-    private String anggota;
+  private String tanggal;
+  private String waktu;
+  private Buku buku;
+  private String anggotaa;
 
-    public TransaksiPengembalian(String tanggal, String waktu, Buku buku, String anggota) {
-        this.tanggal = tanggal;
-        this.waktu = waktu;
-        this.buku = buku;
-        this.anggota = anggota;
-    }
-    
-    public void catatPengembalian() {
-        System.out.println("Pengembalian dicatat pada " + tanggal + " " + waktu);
-    }
+  public TransaksiPengembalian(String tanggal, String waktu, Buku buku, String anggotaa) {
+    this.tanggal = tanggal;
+    this.waktu = waktu;
+    this.buku = buku;
+    this.anggotaa = anggotaa;
+  }
 
-    public Buku getBuku() {
-        return buku;
-    }
+  public void catatPengembalian() {
+    System.out.println("Pengembalian dicatat pada " + tanggal + " " + waktu);
+  }
 
-    public String getAnggota() {
-        return anggota;
-    }
+  public Buku getBuku() {
+    return buku;
+  }
 
-    public void setTanggal(String tanggal) {
-        this.tanggal = tanggal;
-    }
+  public String getAnggotaa() {
+    return anggotaa;
+  }
 
-    public void setWaktu(String waktu) {
-        this.waktu = waktu;
-    }
+  public void setTanggal(String tanggal) {
+    this.tanggal = tanggal;
+  }
 
-    public void setBuku(Buku buku) {
-        this.buku = buku;
-    }
+  public void setWaktu(String waktu) {
+    this.waktu = waktu;
+  }
 
-    public void setAnggota(String anggota) {
-        this.anggota = anggota;
-    }
+  public void setBuku(Buku buku) {
+    this.buku = buku;
+  }
+
+  public void setAnggotaa(String anggotaa) {
+    this.anggotaa = anggotaa;
+  }
 }
