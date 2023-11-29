@@ -4,6 +4,7 @@
  */
 package si_perpustakaan.modern.dan.efisien;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,6 +24,7 @@ public class SI_PerpustakaanModernDanEfisien {
         AnggotaPerpustakaan anggota = new AnggotaPerpustakaan(namaAnggota);
 //        AnggotaPerpustakaan anggota = new AnggotaPerpustakaan("John Doe");
         Buku buku = new Buku();
+        Admin admin = new Admin(new String(), new String(), new ArrayList<String>());
         int choice;
         
         do {
