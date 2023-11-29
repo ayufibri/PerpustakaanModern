@@ -1,76 +1,69 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package si_perpustakaan.modern.dan.efisien;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.lang.String;
 
-/**
- *
- * @author ASUS
- */
 public class SI_PerpustakaanModernDanEfisien {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Selamat datang di Perpustakaan Modern dan Efisien:");
+        System.out.println("Masukan Nama anda :");
         String namaAnggota = scanner.nextLine();
         AnggotaPerpustakaan anggota = new AnggotaPerpustakaan(namaAnggota);
-//        AnggotaPerpustakaan anggota = new AnggotaPerpustakaan("John Doe");
         Buku buku = new Buku();
         Admin admin = new Admin(new String(), new String(), new ArrayList<String>());
-        int choice;
-        
+
+        int choice = 1;
+
         do {
-            System.out.println("========== Menu Perpustakaan ==========");
-            System.out.println("1. Daftar Anggota");
-            System.out.println("2. Cari Buku");
-            System.out.println("3. Tampilkan List Buku");
-            System.out.println("4. Pinjam Buku");
-            System.out.println("5. Kembalikan Buku");
-            System.out.println("0. Keluar");
-            System.out.print("Pilih Menu (0-5): ");
-            
-            choice = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline character
-            
-            switch (choice) {
-                case 1:
-                    // Daftar Anggota
-                    anggota.tambahAnggota();
-                    break;
-                case 2:
-                    // Cari Buku
-                    buku.informasiBuku();
-                    break;
-                case 3:
-                    // Tampilkan List Buku
-                    admin.tampilkanDaftarBuku();
-                    break;
-                case 4:
-                    // Pinjam Buku
-                    anggota.pinjamBuku();
-                    break;
-                case 5:
-                    // Kembalikan Buku
-                    anggota.kembalikanBuku();
-                    break;
-                case 0:
-                    System.out.println("Terima kasih!");
-                    break;
-                default:
-                    System.out.println("Pilihan tidak valid. Silakan coba lagi.");
-                    break;
+          System.out.println("========== Menu Perpustakaan ==========");
+          System.out.println("1. Daftar Anggota");
+          System.out.println("2. Cari Buku");
+          System.out.println("3. Tampilkan List Buku");
+          System.out.println("4. Pinjam Buku");
+          System.out.println("5. Kembalikan Buku");
+          System.out.println("0. Keluar");
+          System.out.print("Pilih Menu (0-5): ");
+
+          choice = scanner.nextInt();
+          // scanner.nextLine(); // Consume the newline character
+
+          switch (choice) {
+            case 1:
+              // Daftar Anggota
+              anggota.tambahAnggota();
+              break;
+            case 2:
+              // Cari Buku
+              buku.informasiBuku();
+              break;
+            case 3:
+              // Tampilkan List Buku
+              admin.tampilkanDaftarBuku();
+              break;
+            case 4:
+              // Pinjam Buku
+              anggota.pinjamBuku();
+              break;
+            case 5: {
+              TransaksiPengembalian TransaksiPeminjaman = null;
+              // Kembalikan Buku
+              anggota.kembalikanBuku(buku, TransaksiPeminjaman);
             }
-            
+
+            case 0:
+              System.out.println("Terima kasih!");
+              break;
+            default:
+              System.out.println("Pilihan tidak valid. Silakan coba lagi.");
+              break;
+          }
+
         } while (choice != 0);
-        
+
         scanner.close();
     }
 }
