@@ -78,11 +78,39 @@ public class Admin {
         }
     }
     
-    public void tampilkanDaftarBuku(Iterable<Buku> daftarBuku) {
-        System.out.println(">>> Daftar Buku <<<");
-       
-        for (Buku buku : daftarBuku) {
-            System.out.println("#" + buku.getNomorISBN()+ " " + buku.getJudul() + " - " + buku.getPengarang() + ". Stock = " + buku.getStatusKetersediaan());            
-        }
+    public void tampilkanDaftarBuku() {
+      System.out.println("Berikut adalah daftar buku yang ada di Perpustakaan: ");
+      int panjangbaris = buku.getJudul().size();
+
+      for (int i = 0; i < panjangbaris; i++) {
+          System.out.println((i + 1) + ".");
+          System.out.println("Judul : " + buku.getJudul().get(i));
+          System.out.println("Penulis/Penerbit : " + buku.getPengarang().get(i));
+          System.out.println("ISBN : " + buku.getNomorISBN().get(i));
+          System.out.println("Stok Buku : " + buku.getStok().get(i) + " pcs");
+          System.out.println("");
+      }
+
+      System.out.println("Perubahan Stok buku yang ada : ");
+      int stokbaru = input.nextInt();
+      System.out.println("Masukkan nomor urut buku yang ingin anda ubah : ");
+      int nourut = input.nextInt();
+
+      // Validate that nourut is within bounds
+      if (nourut >= 1 && nourut <= panjangbaris) {
+          buku.getStok().set(nourut - 1, buku.getStok().get(nourut - 1) + stokbaru);
+
+          System.out.println("Stok buku yang telah di-update adalah : ");
+          for (int i = 0; i < panjangbaris; i++) {
+              System.out.println((i + 1) + ".");
+              System.out.println("Judul : " + buku.getJudul().get(i));
+              System.out.println("Penulis/Penerbit : " + buku.getPengarang().get(i));
+              System.out.println("ISBN : " + buku.getNomorISBN().get(i));
+              System.out.println("Stok Buku : " + buku.getStok().get(i) + " pcs");
+              System.out.println("");
+          }
+      } else {
+          System.out.println("Nomor urut buku tidak valid.");
+      }
     }
 }
